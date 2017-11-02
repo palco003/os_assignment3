@@ -21,6 +21,7 @@ void SimpleThread(int which) {
     printf("*** thread %d sees value %d\n", which, val);
     SharedVariable = val + 1;
   }
+  pthread_barrier_wait(&barr);
   val = SharedVariable;
   printf("Thread %d sees final value %d\n", which, val);
 
