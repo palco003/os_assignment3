@@ -1,7 +1,11 @@
+#define _XOPEN_SOURCE 600
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
+
+#define PTHREAD_SYNC
 
 int SharedVariable = 0;
 pthread_mutex_t lock;
