@@ -8,7 +8,7 @@
 #define PTHREAD_SYNC
 
 int SharedVariable = 0;
-pthread_mutex_t lock;
+pthread_mutex_t mutex;
 pthread_barrier_t barr;
 
 void SimpleThread(int which) {
@@ -57,6 +57,12 @@ int main(int argc, char const *argv[])
     if(pthread_barrier_init(&barr, NULL, threads))
     {
       printf("Could not create a barrier\n");
+      return -1;
+    }
+
+    if(pthread_mutex_init(&mutex, NULL))
+    {
+      printf("Unable to initialize a mutex\n");
       return -1;
     }
     
