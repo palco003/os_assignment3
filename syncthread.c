@@ -17,11 +17,21 @@ void SimpleThread(int which) {
     if (random() > RAND_MAX / 2){
       usleep(10);
     }
+    #ifdef
+    pthread_mutex_lock(&mutex);
+    #endif
+
     val = SharedVariable;
     printf("*** thread %d sees value %d\n", which, val);
     SharedVariable = val + 1;
+
+    #ifdef
+    pthread_mutex_unlock(&mutex);
+    #endif
   }
+  #ifdef
   pthread_barrier_wait(&barr);
+  #endif
   val = SharedVariable;
   printf("Thread %d sees final value %d\n", which, val);
 
